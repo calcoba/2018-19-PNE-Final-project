@@ -4,6 +4,7 @@ import requests
 import sys
 
 
+# Falta comprobar cualquier error
 def connection(endpoint, limit=162, specie=""):
     server = "http://rest.ensembl.org"
     if specie:
