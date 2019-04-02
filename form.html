@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Main Page</title>
+  </head>
+  <body>
+    <h3>Request page for the genoma database ensembl</h3>
+
+    <form action="listSpecies" method="get">
+        Limit (optional)
+        <input type="number" name="Limit" min="1" max="162">
+        <input type="submit">
+    </form>
+    <form action="karyotype" method="get">
+        Specie for getting karyotype info
+        <input type="text" name="specie">
+    </form>
+
+
+  </body>
+</html>
