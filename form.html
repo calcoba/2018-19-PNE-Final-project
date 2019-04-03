@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
     <title>Main Page</title>
   </head>
   <body>
-    <h3>Request page for the genoma database ensembl</h3>
-
+    <h1>Request page for the genoma database ensembl</h1>
     <form action="listSpecies" method="get">
-        Limit (optional)
-        <input type="number" name="Limit" min="1" max="162">
-        <input type="submit">
+        <fieldset>
+            <legend>List of Species</legend>
+                <p>Limit (optional) <input type="number" name="limit" min="1" max="162"></p>
+                <p><button type="submit">Send</button></p>
+        </fieldset>
     </form>
     <form action="karyotype" method="get">
-        Specie for getting karyotype info
-        <input type="text" name="specie">
+        <fieldset>
+            <legend>Karyotype information</legend>
+                <p>Choose a specie: <input type="text" name="specie"></p>
+                <p><button type="submit">Send</button></p>
+
+        </fieldset>
     </form>
-
-
+    <form action="chromosomeLength" method="get">
+        <fieldset>
+            <legend>Chromosome Length</legend>
+                <p>Choose a specie: <input  type="text" name="specie"></p>
+                <p>Choose a chromosome: <input  type="text" name="chromo"></p>
+                <p><button type="submit">Send</button></p>
+        </fieldset>
+    </form>
   </body>
 </html>
