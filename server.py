@@ -5,25 +5,35 @@ import sys
 
 
 # Falta comprobar cualquier error
-def connection(endpoint, limit=162, specie=""):
+def connection(endpoint, limit=162, specie="", chromosome=""):
     server = "http://rest.ensembl.org"
     if specie:
-        r = requests.get(server + endpoint + specie, headers={"Content-Type": "application/json"})
+        if chromosome:
+            r = requests.get(server + endpoint + specie + "/" + chromosome, headers={"Content-Type": "application/json"})
+            if not r.ok:
+                r.raise_for_status()
+                sys.exit()
 
-        if not r.ok:
-            r.raise_for_status()
-            sys.exit()
-
-        decoded = r.json()
-        data_karyotype = decoded['karyotype']
-        if data_karyotype:
-            list_karyotype = "<ul>"
-            for i in range(len(data_karyotype)):
-                list_karyotype += "<li>" + data_karyotype[i] + "</li>"
-            list_karyotype += "<ul>"
+            decoded = r.json()
+            length = decoded['length']
+            return length
         else:
-            list_karyotype= "<ul> There is no available information for the karyotyoe of this specie <ul>"
-        return list_karyotype
+            r = requests.get(server + endpoint + specie, headers={"Content-Type": "application/json"})
+
+            if not r.ok:
+                r.raise_for_status()
+                sys.exit()
+
+            decoded = r.json()
+            data_karyotype = decoded['karyotype']
+            if data_karyotype:
+                list_karyotype = "<ul>"
+                for i in range(len(data_karyotype)):
+                    list_karyotype += "<li>" + data_karyotype[i] + "</li>"
+                list_karyotype += "<ul>"
+            else:
+                list_karyotype= "<ul> There is no available information for the karyotyoe of this specie <ul>"
+            return list_karyotype
 
     else:
         r = requests.get(server + str(endpoint), headers={"Content-Type": "application/json"})
@@ -48,7 +58,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         print(self.requestline, 'blue')
         total_request = self.path.split('?')
         request = total_request.pop(0)
-        print(total_request)
 
         if request == "/":
             f = open("form.html", 'r')
@@ -74,15 +83,29 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                 <body>
                                  <h1>List of species</h1>
                                   {}
-                                  <a href="/">Main page</a>
+                                  <p><a href="/">Main page</a></p>
                                 </body>
                                 </html>""".format(list_species)
 
         elif request == "/karyotype":
             endpoint = "/info/assembly/"
             specie = total_request[-1].split('=')[-1]
-            karyotype = connection(endpoint, specie=specie)
-            contents = """<!DOCTYPE html>
+            if not specie:
+                contents = """<!DOCTYPE html>
+                                <html lang="en">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <title>SeqAnalysis</title>
+                                </head>
+                                <body>
+                                 <h1> information about the karyotype</h1>
+                                  You must fill the specie form
+                                  <p><a href="/">Main page</a></p>
+                                </body>
+                                </html>"""
+            else:
+                karyotype = connection(endpoint, specie=specie)
+                contents = """<!DOCTYPE html>
                                 <html lang="en">
                                 <head>
                                     <meta charset="UTF-8">
@@ -91,12 +114,44 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                 <body>
                                  <h1> information about the karyotype of {}</h1>
                                   {}
-                                  <a href="/">Main page</a>
+                                  <p><a href="/">Main page</a></p>
                                 </body>
                                 </html>""".format(specie, karyotype)
 
         elif request == "/chromosomeLength":
-            pass
+            endpoint = "/info/assembly/"
+            print(total_request)
+            sp_ch = total_request[0].split('&')
+            print(sp_ch)
+            specie = sp_ch[0].split('=')[-1]
+            chromo = sp_ch[-1].split('=')[-1]
+            if not specie or not chromo:
+                contents = """<!DOCTYPE html>
+                                <html lang="en">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <title>SeqAnalysis</title>
+                                </head>
+                                <body>
+                                 <h1> information about the chromosome</h1>
+                                  You must fill the chromosome and the specie form
+                                  <p><a href="/">Main page</a></p>
+                                </body>
+                                </html>"""
+            else:
+                length = connection(endpoint, specie=specie, chromosome=chromo)
+                contents = """<!DOCTYPE html>
+                                <html lang="en">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <title>SeqAnalysis</title>
+                                </head>
+                                <body>
+                                 <h2>Lenght of the chromosome {} of {} specie</h2>
+                                  {}
+                                  <p><a href="/">Main page</a></p>
+                                </body>
+                                </html>""".format(chromo, specie, length)
 
         else:
             f = open("error.html", 'r')
