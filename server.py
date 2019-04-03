@@ -98,7 +98,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     <title>SeqAnalysis</title>
                                 </head>
                                 <body>
-                                 <h1> information about the karyotype</h1>
+                                 <h1> Something went wrong</h1>
                                   You must fill the specie form
                                   <p><a href="/">Main page</a></p>
                                 </body>
@@ -112,7 +112,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     <title>SeqAnalysis</title>
                                 </head>
                                 <body>
-                                 <h1> information about the karyotype of {}</h1>
+                                 <h1> Information about the karyotype of {}</h1>
                                   {}
                                   <p><a href="/">Main page</a></p>
                                 </body>
@@ -120,9 +120,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif request == "/chromosomeLength":
             endpoint = "/info/assembly/"
-            print(total_request)
             sp_ch = total_request[0].split('&')
-            print(sp_ch)
             specie = sp_ch[0].split('=')[-1]
             chromo = sp_ch[-1].split('=')[-1]
             if not specie or not chromo:
@@ -133,7 +131,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     <title>SeqAnalysis</title>
                                 </head>
                                 <body>
-                                 <h1> information about the chromosome</h1>
+                                 <h1> Something went wrong</h1>
                                   You must fill the chromosome and the specie form
                                   <p><a href="/">Main page</a></p>
                                 </body>
@@ -147,7 +145,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     <title>SeqAnalysis</title>
                                 </head>
                                 <body>
-                                 <h2>Lenght of the chromosome {} of {} specie</h2>
+                                 <h2>Length of the chromosome {} of {} specie</h2>
                                   {}
                                   <p><a href="/">Main page</a></p>
                                 </body>
