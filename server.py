@@ -2,17 +2,20 @@ import http.server
 import socketserver
 import requests
 import sys
+import termcolor
 
 
 # Falta comprobar cualquier error
-def connection(endpoint, limit=162, specie="", chromosome=""):
+def connection(endpoint, limit=162, specie="", chromo=""):
     server = "http://rest.ensembl.org"
     if specie:
-        if chromosome:
-            r = requests.get(server + endpoint + specie + "/" + chromosome, headers={"Content-Type": "application/json"})
+        if chromo:
+            r = requests.get(server + endpoint + specie + "/" + chromo, headers={"Content-Type": "application/json"})
             if not r.ok:
-                r.raise_for_status()
-                sys.exit()
+                if r.status_code == 400:
+                    return "Error 400 Client Error: Bad Request for url:", server + endpoint + specie
+                else:
+                    return "Error", r.status_code()
 
             decoded = r.json()
             length = decoded['length']
@@ -21,8 +24,10 @@ def connection(endpoint, limit=162, specie="", chromosome=""):
             r = requests.get(server + endpoint + specie, headers={"Content-Type": "application/json"})
 
             if not r.ok:
-                r.raise_for_status()
-                sys.exit()
+                if r.status_code == 400:
+                    return "Error 400 Client Error: Bad Request for url:", server + endpoint + specie
+                else:
+                    return "Error", r.status_code()
 
             decoded = r.json()
             data_karyotype = decoded['karyotype']
@@ -32,11 +37,11 @@ def connection(endpoint, limit=162, specie="", chromosome=""):
                     list_karyotype += "<li>" + data_karyotype[i] + "</li>"
                 list_karyotype += "<ul>"
             else:
-                list_karyotype= "<ul> There is no available information for the karyotyoe of this specie <ul>"
+                list_karyotype = "<ul> There is no available information for the karyotype of this specie <ul>"
             return list_karyotype
 
     else:
-        r = requests.get(server + str(endpoint), headers={"Content-Type": "application/json"})
+        r = requests.get(server + endpoint, headers={"Content-Type": "application/json"})
 
         if not r.ok:
             r.raise_for_status()
@@ -44,10 +49,13 @@ def connection(endpoint, limit=162, specie="", chromosome=""):
 
         decoded = r.json()
         data_species = decoded['species']
-        list_species = "<ul>"
-        for i in range(limit):
-            list_species += "<li>"+str(data_species[i]['name'])+"</li>"
-        list_species += "<ul>"
+        if type(limit) is int:
+            list_species = "<ul>"
+            for i in range(limit):
+                list_species += "<li>"+str(data_species[i]['name'])+"</li>"
+            list_species += "<ul>"
+        else:
+            list_species = "The limit must be an integer"
         return list_species
 
 
@@ -55,7 +63,14 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         # Printing the request line
-        print(self.requestline, 'blue')
+        contents = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SeqAnalysis</title>
+</head>
+"""
+        termcolor.cprint(self.requestline, 'blue')
         total_request = self.path.split('?')
         request = total_request.pop(0)
 
@@ -66,57 +81,54 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         elif request == "/listSpecies":
             endpoint = "/info/species"
+            print("1")
             if total_request:
                 try:
-                    limit = int(total_request[-1].split('=')[-1])
+                    print(2)
+                    limit = total_request[-1].split('=')[-1]
                     list_species = connection(endpoint, limit)
                 except ValueError:
+                    print(3)
                     list_species = connection(endpoint)
             else:
+                print(5)
                 list_species = connection(endpoint)
-            contents = """<!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <title>SeqAnalysis</title>
-                                </head>
-                                <body>
-                                 <h1>List of species</h1>
-                                  {}
-                                  <p><a href="/">Main page</a></p>
-                                </body>
-                                </html>""".format(list_species)
+                print(type(list_species))
+            if type(list_species) is str:
+                print(4)
+                contents += """<body>
+<h1>List of species</h1>
+{}
+<p><a href="/">Main page</a></p>
+</body>
+</html>""".format(list_species)
 
         elif request == "/karyotype":
             endpoint = "/info/assembly/"
             specie = total_request[-1].split('=')[-1]
             if not specie:
-                contents = """<!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <title>SeqAnalysis</title>
-                                </head>
-                                <body>
-                                 <h1> Something went wrong</h1>
-                                  You must fill the specie form
-                                  <p><a href="/">Main page</a></p>
-                                </body>
-                                </html>"""
+                contents += """<body>
+<h1> Something went wrong</h1>
+You must fill the specie form
+<p><a href="/">Main page</a></p>
+</body>
+</html>"""
             else:
                 karyotype = connection(endpoint, specie=specie)
-                contents = """<!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <title>SeqAnalysis</title>
-                                </head>
-                                <body>
-                                 <h1> Information about the karyotype of {}</h1>
-                                  {}
-                                  <p><a href="/">Main page</a></p>
-                                </body>
-                                </html>""".format(specie, karyotype)
+                if type(karyotype) == str:
+                    contents += """<body>
+<h1> Information about the karyotype of {}</h1>
+{}
+<p><a href="/">Main page</a></p>
+</body>
+</html>""".format(specie, karyotype)
+                else:
+                    contents += """<body>
+                <h2>Something went wrong in the request</h2>
+                {}
+                <p><a href="/">Main page</a></p>
+                </body>
+                </html>""".format(" ".join(karyotype))
 
         elif request == "/chromosomeLength":
             endpoint = "/info/assembly/"
@@ -124,32 +136,29 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             specie = sp_ch[0].split('=')[-1]
             chromo = sp_ch[-1].split('=')[-1]
             if not specie or not chromo:
-                contents = """<!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <title>SeqAnalysis</title>
-                                </head>
-                                <body>
-                                 <h1> Something went wrong</h1>
-                                  You must fill the chromosome and the specie form
-                                  <p><a href="/">Main page</a></p>
-                                </body>
-                                </html>"""
+                contents += """<body>
+<h1> Something went wrong</h1>
+You must fill the chromosome and the specie form
+<p><a href="/">Main page</a></p>
+</body>
+</html>"""
+
             else:
-                length = connection(endpoint, specie=specie, chromosome=chromo)
-                contents = """<!DOCTYPE html>
-                                <html lang="en">
-                                <head>
-                                    <meta charset="UTF-8">
-                                    <title>SeqAnalysis</title>
-                                </head>
-                                <body>
-                                 <h2>Length of the chromosome {} of {} specie</h2>
-                                  {}
-                                  <p><a href="/">Main page</a></p>
-                                </body>
-                                </html>""".format(chromo, specie, length)
+                length = connection(endpoint, specie=specie, chromo=chromo)
+                if type(length) is int:
+                    contents += """<body>
+<h2>Length of the chromosome {} of {} specie</h2>
+{}
+<p><a href="/">Main page</a></p>
+</body>
+</html>""".format(chromo, specie, length)
+                else:
+                    contents += """<body>
+<h2>Something went wrong in the request</h2>
+{}
+<p><a href="/">Main page</a></p>
+</body>
+</html>""".format(" ".join(length))
 
         else:
             f = open("error.html", 'r')
@@ -161,6 +170,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'text/html')
         self.send_header('Content-Length', len(str.encode(contents)))
         self.end_headers()
+        print(contents)
 
         # -- Sending the body of the response message
         self.wfile.write(str.encode(contents))
