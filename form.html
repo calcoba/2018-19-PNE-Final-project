@@ -5,21 +5,20 @@
     <title>Main Page</title>
   </head>
   <body>
-    <h1>Request page for the genoma database ensembl</h1>
+  <fieldset><legend><h1>Request for the genoma database ensembl</h1></legend>
     <form action="listSpecies" method="get">
         <fieldset>
             <legend>List of Species</legend>
                 <p>Limit (optional) <input type="number" name="limit" min="1" max="162"></p>
                 <p><button type="submit">Send</button></p>
-        </fieldset>
+        </fieldset><p></p>
     </form>
     <form action="karyotype" method="get">
         <fieldset>
             <legend>Karyotype information</legend>
                 <p>Choose a specie: <input type="text" name="specie"></p>
                 <p><button type="submit">Send</button></p>
-
-        </fieldset>
+        </fieldset><p></p>
     </form>
     <form action="chromosomeLength" method="get">
         <fieldset>
@@ -27,7 +26,40 @@
                 <p>Choose a specie: <input  type="text" name="specie"></p>
                 <p>Choose a chromosome: <input  type="text" name="chromo"></p>
                 <p><button type="submit">Send</button></p>
+        </fieldset><p></p>
+    </form></fieldset>
+  <fieldset><legend><h1>Request for the Human gene</h1></legend>
+    <form action="geneSeq" method="get">
+        <fieldset>
+            <legend>Sequence of a gene</legend>
+                <p>Introduce the name of a gene: <input type="text" name="gene"></p>
+                <p><button type="submit">Send</button></p>
         </fieldset>
     </form>
+    <form action="geneInfo" method="get">
+        <fieldset>
+            <legend>Information of a gene</legend>
+                <p>Introduce the name of a gene: <input type="text" name="gene"></p>
+                <p><button type="submit">Send</button></p>
+        </fieldset>
+    </form>
+    <form action="geneCal" method="get">
+        <fieldset>
+            <legend>Length and base percentage of a gene</legend>
+                <p>Introduce the name of a gene: <input type="text" name="gene"></p>
+                <p><button type="submit">Send</button></p>
+        </fieldset>
+    </form>
+    <form action="geneList" method="get">
+        <fieldset>
+            <legend>Names of genes in location of a gene</legend>
+                <p>Introduce the name of a chromosome: <input type="text" name="chromo"></p>
+                <p>Introduce the start point: <input type="number" name="start" min="0"></p>
+                <p>Introduce the end point: <input type="number" name="end" min="0"></p>
+                <p><button type="submit">Send</button></p>
+        </fieldset>
+    </form>
+  </fieldset>
+
   </body>
 </html>
