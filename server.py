@@ -3,6 +3,8 @@ import socketserver
 import requests
 import sys
 import termcolor
+import json
+from Seq import Seq
 
 
 def species_connect(endpoint, limit=162, specie="", chromo=""):
@@ -60,19 +62,50 @@ def get_id(name):
             return "Error 400 Client Error: Bad Request for url:", server + endpoint
         else:
             return "Error", r.status_code()
-    gene_id = r.json()[0]['id']
+    print(r.json())
+    try:
+        gene_id = r.json()[0]['id']
+    except IndexError:
+        return
     return gene_id
 
 
-def gene_seq(gene_id):
+def get_gene_data(gene_id):
     server = "http://rest.ensembl.org"
     endpoint = "/sequence/id/" + gene_id
-    r = requests.get(server + endpoint, headers={"Content-Type": "application/json"})
+    data = {"ids": [gene_id]}
+    data = json.dumps(data)
+    print(data)
+    r = requests.get(server + endpoint, headers={"Content-Type": "application/json"}, data=data)
     if not r.ok:
         if r.status_code == 400:
             return "Error 400 Client Error: Bad Request for url:", server + endpoint
         else:
             return "Error", r.status_code()
+    gene_data = r.json()
+    print(type(gene_data))
+    return gene_data
+
+
+def gene_calc(gene_seq):
+    seq_calc = Seq(gene_seq)
+    bases = set(seq_calc.strbases)
+    p_bases = {}
+    c_bases = {}
+    print(1)
+    for base in bases:
+        p_bases.update({base: str(seq_calc.perc(base)) + "%"})
+        c_bases.update({base: seq_calc.count(base)})
+
+    p_table = "{:<5} : {:<5}".format('Base', 'Percentage')
+    for k, v in p_bases.items():
+        p_table += "<p>{:<5} : {:<5}</p>".format(k, v)
+
+    c_table = "{:<5} : {:<5}".format('Base', 'Count')
+    for k, v in c_bases.items():
+        c_table += "<p>{:<5} : {:<5}</p>".format(k, v)
+
+    return p_table, c_table
 
 
 class TestHandler(http.server.BaseHTTPRequestHandler):
@@ -117,7 +150,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     if type(karyotype) == str:
                         contents += """<body><h1>Karyotype information of {}</h1>{}""".format(specie, karyotype)
                     else:
-                        contents += """<body><h2>Something went wrong in the request</h2>{}""".format(" ".join(karyotype))
+                        contents += """<body><h2>Something went wrong in the request</h2>
+                        {}""".format(" ".join(karyotype))
 
             elif request == "/chromosomeLength":
                 endpoint = "/info/assembly/"
@@ -129,23 +163,48 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 else:
                     length = species_connect(endpoint, specie=specie, chromo=chromo)
                     if type(length) is int:
-                        contents += """<body><h2>Chromosome length</h2>Chromosome {} of {} specie is {} length""".format(chromo, specie, length)
+                        contents += """<body><h2>Chromosome length</h2>
+                        Chromosome {} of {} specie is {} length""".format(chromo, specie, length)
                     else:
                         contents += """<body><h2>Something went wrong in the request</h2>{}""".format(" ".join(length))
 
             elif request.startswith("/gene"):
                 gene_request = request.lstrip("/gene")
-                gene_name = r_para[0].split('=')[-1]
-                gene_id = get_id(gene_name)
+                g_name = r_para[0].split('=')[-1]
+                gene_id = get_id(g_name)
+                if gene_id:
+                    g_data = get_gene_data(gene_id)
+                    # noinspection PyTypeChecker
+                    g_seq = g_data['seq']
 
-                if gene_request == "Seq":
-                    print(gene_id)
-                elif gene_request == "Info":
-                    pass
-                elif gene_request == "Cal:":
-                    pass
-                elif gene_request == "List":
-                    pass
+                    if gene_request == "Seq":
+                        contents += """<body><h2>Gene sequence</h2>
+                         <p style='word-break: break-all'>{}</p>""".format(g_seq)
+
+                    elif gene_request == "Info":
+                        # noinspection PyTypeChecker
+                        desc_data = g_data['desc'].split(":")
+                        # noinspection PyTypeChecker
+                        contents += """<body><h2>Gene sequence</h2>
+                         <p>Gene Id: {}</p>
+                         <p>Start Position: {}</p>
+                         <p>End Position: {}</p>
+                         <p>Chromosome: {}</p>
+                         <p>Length: {}</p>""".format(g_data['id'], desc_data[3], desc_data[4], desc_data[2], len(g_seq))
+
+                    elif gene_request == "Cal":
+                        p_table, c_table = gene_calc(g_seq)
+                        contents += """<body><h2> {} Gene Calculations</h2>
+                         <p>{}</p>
+                         <p>{}</p>""".format(g_name, p_table, c_table)
+
+                    elif gene_request == "List":
+                        pass
+
+                else:
+                    f = open("error.html", 'r')
+                    contents = f.read()
+                    f.close()
 
             else:
                 f = open("error.html", 'r')
