@@ -155,6 +155,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         termcolor.cprint(self.requestline, 'blue')
         total_request = self.path.split('?')
         request = total_request.pop(0)
+        json_para = False
         try:
             r_para = total_request[0].split('&')
             para = dict()
@@ -164,8 +165,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             if 'json' in para.keys():
                 del para['json']
                 json_para = True
-            else:
-                json_para = False
         except IndexError:
             para = ""
 
