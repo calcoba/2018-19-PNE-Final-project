@@ -7,20 +7,28 @@ import json
 from Seq import Seq
 
 
-def species_connect(endpoint, limit=199, specie="", chromo=""):
+def species_connect(endpoint, para):
     server = "http://rest.ensembl.org"
-    if specie:
-        r = requests.get(server + endpoint + specie + "/" + chromo, headers={"Content-Type": "application/json"})
+    if 'specie' in para.keys():
+        specie = para['specie']
+        try:
+            chromo = para['chromo']
+        except KeyError:
+            chromo = ""
+        url_link = server + endpoint + specie + "/" + chromo
+        r = requests.get(url_link, headers={"Content-Type": "application/json"})
         print(server + endpoint + specie + "/" + chromo)
         if not r.ok:
             if r.status_code == 400:
-                return "Error 400 Client Error: Bad Request for url:", server + endpoint + specie
+                error = "Error 400 Client Error: Bad Request for url: "+'<a href="{}">{}</a>'.format(url_link, url_link)
+                return {'length': error, 'karyotype': error}
             else:
-                return "Error", r.status_code()
+                error = "Error " + r.status_code()
+                return {'length': error, 'karyotype': error}
 
         try:
             length = r.json()['length']
-            return length
+            return {'length': length}
         except KeyError:
             data_karyotype = r.json()['karyotype']
             print(data_karyotype, 1)
@@ -31,9 +39,15 @@ def species_connect(endpoint, limit=199, specie="", chromo=""):
                 list_karyotype += "<ul>"
             else:
                 list_karyotype = "<ul> There is no available information for the karyotype of this specie <ul>"
-            return list_karyotype
+            return {'karyotype': list_karyotype}
 
     else:
+        try:
+            limit = int(para['limit'])
+        except KeyError:
+            limit = 199
+        except ValueError:
+            limit = 199
         r = requests.get(server + endpoint, headers={"Content-Type": "application/json"})
 
         if not r.ok:
@@ -43,7 +57,6 @@ def species_connect(endpoint, limit=199, specie="", chromo=""):
         data_species = r.json()['species']
         if type(limit) is int:
             list_species = "<ul>"
-            print(len(data_species))
             try:
                 for i in range(limit):
                     list_species += "<li>"+str(i+1)+" "+str(data_species[i]['name'])+"</li>"
@@ -52,24 +65,24 @@ def species_connect(endpoint, limit=199, specie="", chromo=""):
                 list_species = "The limit can't be superior to 199"
         else:
             list_species = "The limit must be an integer"
-        return list_species
+        return {'list_species': list_species}
 
 
 def get_id(name):
     server = "http://rest.ensembl.org"
-    endpoint = "/xrefs/symbol/homo_sapiens/" + name
-    r = requests.get(server + endpoint, headers={"Content-Type": "application/json"})
+    endpoint = "/xrefs/symbol/homo_sapiens/" + name['gene']
+    url_link = server + endpoint
+    r = requests.get(url_link, headers={"Content-Type": "application/json"})
     if not r.ok:
         if r.status_code == 400:
-            return "Error 400 Client Error: Bad Request for url:", server + endpoint
+            return "Error 400 Client Error: Bad Request for url: " + '<a href="{}">{}</a>'.format(url_link, url_link)
         else:
-            return "Error", r.status_code()
-    print(r.json())
+            return "Error " + r.status_code()
     try:
         gene_id = r.json()[0]['id']
     except IndexError:
         return
-    return gene_id
+    return {'gene_id': gene_id}
 
 
 def get_gene_data(gene_id):
@@ -86,7 +99,7 @@ def get_gene_data(gene_id):
             return "Error", r.status_code()
     gene_data = r.json()
     print(type(gene_data))
-    return gene_data
+    return {'gene_data': gene_data}
 
 
 def gene_calc(gene_seq):
@@ -110,6 +123,30 @@ def gene_calc(gene_seq):
     return p_table, c_table
 
 
+def gene_list(parameters):
+    gene = parameters['chromo']
+    start = parameters['start']
+    end = parameters['end']
+    server = "http://rest.ensembl.org"
+    endpoint = "/overlap/region/human/{}:{}-{}?feature=gene".format(gene, start, end)
+    url_link = server + endpoint
+    r = requests.get(url_link, headers={"Content-Type": "application/json"})
+    if not r.ok:
+        if r.status_code == 400:
+            return "Error 400 Client Error: Bad Request for url: " + '<a href="{}">{}</a>'.format(url_link, url_link)
+        else:
+            return "Error", r.status_code()
+    decoded = r.json()
+    if 'error' in decoded[0].keys():
+        return decoded['error']
+    else:
+        list_gene = "<ul>"
+        for i in range(len(decoded)):
+            list_gene += "<li>"+str(i+1)+" "+str(decoded[i]['external_name'])+"</li>"
+        list_gene += "</ul>"
+        return {'list_gene': list_gene}
+
+
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
@@ -120,8 +157,17 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         request = total_request.pop(0)
         try:
             r_para = total_request[0].split('&')
+            para = dict()
+            for i in r_para:
+                i = i.split("=")
+                para.update({i[0]: i[1]})
+            if 'json' in para.keys():
+                del para['json']
+                json_para = True
+            else:
+                json_para = False
         except IndexError:
-            r_para = ""
+            para = ""
 
         if request == "/":
             f = open("form.html", 'r')
@@ -133,96 +179,94 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 endpoint = "/info/species"
                 if total_request:
                     try:
-                        limit = int(r_para[0].split('=')[-1])
-                        list_species = species_connect(endpoint, limit)
+                        list_species = species_connect(endpoint, para)['list_species']
                     except ValueError:
-                        list_species = species_connect(endpoint)
+                        para = dict()
+                        list_species = species_connect(endpoint, para)['list_species']
                 else:
-                    list_species = species_connect(endpoint)
+                    para = dict()
+                    list_species = species_connect(endpoint, para)['list_species']
                 if type(list_species) is str:
                     contents += """<body><h1>List of species</h1>{}""".format(list_species)
 
             elif request == "/karyotype":
                 endpoint = "/info/assembly/"
-                specie = r_para[0].split('=')[-1]
-                if not specie:
+                if not para['specie']:
                     contents += """<body><h1> Something went wrong</h1>You must fill the specie form"""
                 else:
-                    karyotype = species_connect(endpoint, specie=specie)
+                    karyotype = species_connect(endpoint, para)['karyotype']
                     if type(karyotype) == str:
-                        contents += """<body><h1>Karyotype information of {}</h1>{}""".format(specie, karyotype)
+                        contents += """<body><h1>Karyotype information of {}</h1>{}""".format(para['specie'], karyotype)
                     else:
                         contents += """<body><h2>Something went wrong in the request</h2>
                         {}""".format(" ".join(karyotype))
 
             elif request == "/chromosomeLength":
                 endpoint = "/info/assembly/"
-                specie = r_para[0].split('=')[-1]
-                chromo = r_para[-1].split('=')[-1]
-                if not specie or not chromo:
+                if not para['specie'] or not para['chromo']:
                     contents += """<body><h1>Something went wrong</h1>Must fill the chromosome and the specie form"""
-
                 else:
-                    length = species_connect(endpoint, specie=specie, chromo=chromo)
+                    length = species_connect(endpoint, para)['length']
                     if type(length) is int:
                         contents += """<body><h2>Chromosome length</h2>
-                        Chromosome {} of {} specie is {} length""".format(chromo, specie, length)
+                        Chromosome {} of {} specie is {} length""".format(para['chromo'], para['specie'], length)
                     else:
                         contents += """<body><h2>Something went wrong in the request</h2>{}""".format(" ".join(length))
 
             elif request.startswith("/gene"):
                 gene_request = request.lstrip("/gene")
-                g_name = r_para[0].split('=')[-1]
-                gene_id = get_id(g_name)
-                if gene_id:
-                    g_data = get_gene_data(gene_id)
-                    # noinspection PyTypeChecker
-                    g_seq = g_data['seq']
 
-                    if gene_request == "Seq":
-                        contents += """<body><h2>Gene sequence</h2>
-                         <p style='word-break: break-all'>{}</p>""".format(g_seq)
-
-                    elif gene_request == "Info":
-                        # noinspection PyTypeChecker
-                        desc_data = g_data['desc'].split(":")
-                        # noinspection PyTypeChecker
-                        contents += """<body><h2>Gene sequence</h2>
-                         <p>Gene Id: {}</p>
-                         <p>Start Position: {}</p>
-                         <p>End Position: {}</p>
-                         <p>Chromosome: {}</p>
-                         <p>Length: {}</p>""".format(g_data['id'], desc_data[3], desc_data[4], desc_data[2], len(g_seq))
-
-                    elif gene_request == "Cal":
-                        p_table, c_table = gene_calc(g_seq)
-                        contents += """<body><h2> {} Gene Calculations</h2>
-                         <p>{}</p>
-                         <p>{}</p>""".format(g_name, p_table, c_table)
-
-                    elif gene_request == "List":
-                        pass
-
+                if gene_request == "List":
+                    list_gene = gene_list(para)['list_gene']
+                    contents += """<body><h2>Genes list</h2>
+                             <p>{}</p>""".format(list_gene)
                 else:
-                    f = open("error.html", 'r')
-                    contents = f.read()
-                    f.close()
+                    gene_id = get_id(para)['gene_id']
+                    if gene_id:
+                        g_data = get_gene_data(gene_id)['gene_data']
+                        # noinspection PyTypeChecker
+                        g_seq = g_data['seq']
+
+                        if gene_request == "Seq":
+                            contents += """<body><h2>Gene sequence</h2>
+                             <p style='word-break: break-all'>{}</p>""".format(g_seq)
+
+                        elif gene_request == "Info":
+                            # noinspection PyTypeChecker
+                            desc_data = g_data['desc'].split(":")
+                            # noinspection PyTypeChecker
+                            contents += """<body><h2>Gene sequence</h2>
+                             <p>Gene Id: {}</p>
+                             <p>Start Position: {}</p>
+                             <p>End Position: {}</p>
+                             <p>Chromosome: {}</p>
+                    <p>Length: {}</p>""".format(g_data['id'], desc_data[3], desc_data[4], desc_data[2], len(g_seq))
+
+                        elif gene_request == "Calc":
+                            p_table, c_table = gene_calc(g_seq)
+                            contents += """<body><h2> {} Gene Calculations</h2>
+                             <p>{}</p>
+                             <p>{}</p>""".format(para['gene'], p_table, c_table)
+
+                    else:
+                        f = open("error.html", 'r')
+                        contents = f.read()
+                        f.close()
 
             else:
                 f = open("error.html", 'r')
                 contents = f.read()
                 f.close()
             contents += """<p><a href="/">Main page</a></p></body></html>"""
+        if not json_para:
+            self.send_response(200)
 
-        self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(str.encode(contents)))
+            self.end_headers()
 
-        self.send_header('Content-Type', 'text/html')
-        self.send_header('Content-Length', len(str.encode(contents)))
-        self.end_headers()
-        print(contents)
-
-        # -- Sending the body of the response message
-        self.wfile.write(str.encode(contents))
+            # -- Sending the body of the response message
+            self.wfile.write(str.encode(contents))
 
 
 PORT = 8000
