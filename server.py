@@ -7,10 +7,11 @@ import json
 from Seq import Seq
 
 
-def species_connect(endpoint, limit=162, specie="", chromo=""):
+def species_connect(endpoint, limit=199, specie="", chromo=""):
     server = "http://rest.ensembl.org"
     if specie:
         r = requests.get(server + endpoint + specie + "/" + chromo, headers={"Content-Type": "application/json"})
+        print(server + endpoint + specie + "/" + chromo)
         if not r.ok:
             if r.status_code == 400:
                 return "Error 400 Client Error: Bad Request for url:", server + endpoint + specie
@@ -42,12 +43,13 @@ def species_connect(endpoint, limit=162, specie="", chromo=""):
         data_species = r.json()['species']
         if type(limit) is int:
             list_species = "<ul>"
+            print(len(data_species))
             try:
                 for i in range(limit):
-                    list_species += "<li>"+str(data_species[i]['name'])+"</li>"
+                    list_species += "<li>"+str(i+1)+" "+str(data_species[i]['name'])+"</li>"
                 list_species += "<ul>"
             except IndexError:
-                list_species = "The limit can't be superior to 162"
+                list_species = "The limit can't be superior to 199"
         else:
             list_species = "The limit must be an integer"
         return list_species
