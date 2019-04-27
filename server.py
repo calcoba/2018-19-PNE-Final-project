@@ -161,6 +161,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     contents += """<body><h1>List of species</h1>
                     <ul><li>{}</li><ul>""".format("</li><li>".join(list_species))
                     data = {'list_species': list_species}
+                print(data)
 
             elif request == "/karyotype":
                 endpoint = "/info/assembly/"
@@ -283,7 +284,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(str.encode(contents))
         else:
             contents = json.dumps(data)
-            print(data)
             self.send_response(200)
 
             self.send_header('Content-Type', 'application/json')
