@@ -129,7 +129,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 del para['json']
                 json_para = True
         except IndexError:
-            para = ""
+            para = dict()
 
         if request == "/":
             f = open("form.html", 'r')
@@ -144,6 +144,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 except KeyError:
                     limit = 199
                 except ValueError:
+                    limit = 199
+                except TypeError:
                     limit = 199
                 data = species_connect(endpoint, para)
                 if type(limit) is int:
@@ -201,8 +203,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     else:
                         data = gene_list(para)
                         list_gene = list()
-                        for i in range(len(data['list_gene'])):
-                            list_gene.append(data['list_gene'][i]['external_name'])
+                        try:
+                            for i in range(len(data['list_gene'])):
+                                list_gene.append(data['list_gene'][i]['external_name'])
+                        except TypeError:
+                            list_gene.append(data['list_gene'])
                         contents += """<body><h2>Genes list</h2>
                         <h3>Chromosome {}. Start position: {}. End position: {}</h3>
                         <p><li>{}</p>""".format(para['chromo'], para['start'], para['end'], "</li><li>".join(list_gene))
