@@ -63,9 +63,9 @@ def get_gene_data(gene_id):
         endpoint = "/sequence/id/" + gene_id['gene_id']
     except TypeError:
         return {'gene_data': {'seq': gene_id['gene_id']}}
-    data = {"ids": [gene_id]}
-    data = json.dumps(data)
-    r = requests.get(server + endpoint, headers={"Content-Type": "application/json"}, data=data)
+    data_id = {"ids": [gene_id]}
+    data_id = json.dumps(data_id)
+    r = requests.get(server + endpoint, headers={"Content-Type": "application/json"}, data=data_id)
     if not r.ok:
         if r.status_code == 400:
             return {'gene_data': {'seq': gene_id['gene_id']}}
@@ -81,7 +81,6 @@ def gene_calc(gene_seq):
     bases = set(seq_calc.strbases)
     p_bases = {}
     c_bases = {}
-    print(1)
     for base in bases:
         p_bases.update({base: str(seq_calc.perc(base)) + "%"})
         c_bases.update({base: seq_calc.count(base)})
@@ -119,6 +118,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         total_request = self.path.split('?')
         request = total_request.pop(0)
         json_para = False
+        data = ""
         try:
             r_para = total_request[0].split('&')
             para = dict()
@@ -134,17 +134,21 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         if request == "/":
             f = open("form.html", 'r')
             contents = f.read()
+            data = {'Error': "No endpoint given"}
             f.close()
 
         else:
             if request == "/listSpecies":
                 endpoint = "/info/species"
                 try:
-                    limit = int(para['limit'])
+                    if not para['limit']:
+                        limit = 199
+                    else:
+                        limit = int(para['limit'])
                 except KeyError:
                     limit = 199
                 except ValueError:
-                    limit = 199
+                    limit = "Not a number"
                 except TypeError:
                     limit = 199
                 data = species_connect(endpoint, para)
@@ -153,15 +157,18 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     try:
                         for i in range(limit):
                             list_species.append(data['list_species'][i]['name'])
+                        contents += """<body><h1>List of species</h1>
+                                <ul><li>{}</li><ul>""".format("</li><li>".join(list_species))
                     except IndexError:
                         list_species = "The limit can't be superior to 199"
+                        contents += """<body><h1>List of species</h1>
+                                    <ul>{}<ul>""".format(list_species)
+
                 else:
                     list_species = "The limit must be an integer"
-                if type(data['list_species'][i]['name']) is str:
                     contents += """<body><h1>List of species</h1>
-                    <ul><li>{}</li><ul>""".format("</li><li>".join(list_species))
-                    data = {'list_species': list_species}
-                print(data)
+                                    <ul>{}<ul>""".format(list_species)
+                data = {'list_species': list_species}
 
             elif request == "/karyotype":
                 endpoint = "/info/assembly/"
@@ -177,8 +184,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     else:
                         list_karyotype = "<ul> There is no available information for the karyotype of this specie <ul>"
                     if type(data['karyotype']) == list:
-                        print('OK')
-                        contents += """<body><h1>Karyotype information of {}</h1>{}""".format(para['specie'], list_karyotype)
+                        contents += """<body><h1>Karyotype information 
+                        of {}</h1>{}""".format(para['specie'], list_karyotype)
                     else:
                         contents += """<body><h2>Something went wrong in the request</h2>
                         {}""".format(data['error'])
@@ -191,7 +198,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     data = species_connect(endpoint, para)
                     if type(data['length']) is int:
                         contents += """<body><h2>Chromosome length</h2>
-                        Chromosome {} of {} specie is {} length""".format(para['chromo'], para['specie'], data['length'])
+                        Chromosome {} of {} is {} length""".format(para['chromo'], para['specie'], data['length'])
                     else:
                         contents += """<body><h2>Something went wrong in the request</h2>{}""".format(data['error'])
 
