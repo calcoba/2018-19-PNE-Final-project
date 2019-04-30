@@ -30,6 +30,7 @@ def species_connect(endpoint, para):
             return {'length': length}
         except KeyError:
             data_karyotype = r.json()['karyotype']
+            print(url_link)
             return {'karyotype': data_karyotype}
 
     else:
