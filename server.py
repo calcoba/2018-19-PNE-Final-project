@@ -87,6 +87,10 @@ def gene_list(server, parameters):
     return {'list_gene': list_gene}
 
 
+def url_wrong():
+    return {'error': "Something went wrong with the parameters"}
+
+
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
@@ -118,40 +122,50 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
         else:
             if request == "/listSpecies":
                 endpoint = "/info/species"
-                try:
-                    if not para['limit']:
-                        limit = 199
-                    else:
-                        limit = int(para['limit'])
-                except KeyError:
-                    limit = 199
-                except ValueError:
-                    limit = "Not a number"
-                except TypeError:
-                    limit = 199
-                data = species_connect(server, endpoint, para)
-                if type(limit) is int:
-                    list_species = list()
+                if not para:
+                    para.update({'limit': 199})
+                elif 'limit' not in para.keys():
+                    contents += """<body><h1> Something went wrong</h1>The parameters are not correct"""
+                    data = {'error': "Parameters are not correct"}
+                elif not para['limit']:
+                    para.update({'limit': 199})
+                if 'limit' in para.keys():
                     try:
-                        for i in range(limit):
-                            list_species.append(data['list_species'][i]['name'])
-                        contents += """<body><h1>List of species</h1>
-                                <ul><li>{}</li><ul>""".format("</li><li>".join(list_species))
-                    except IndexError:
-                        list_species = "The limit can't be superior to 199"
-                        contents += """<body><h1>List of species</h1>
-                                    <ul>{}<ul>""".format(list_species)
+                        limit = int(para['limit'])
+                    except ValueError:
+                        limit = "Limit must be an integer"
+                    data = species_connect(server, endpoint, para)
+                    if type(limit) is int:
+                        list_species = list()
+                        try:
+                            for i in range(limit):
+                                list_species.append(data['list_species'][i]['name'])
+                            contents += """<body><h1>List of species</h1>
+                                                    <ul><li>{}</li><ul>""".format("</li><li>".join(list_species))
+                        except IndexError:
+                            list_species = "The limit can't be superior to 199"
+                            contents += """<body><h1>List of species</h1>
+                                                        <ul>{}<ul>""".format(list_species)
 
-                else:
-                    list_species = "The limit must be an integer"
-                    contents += """<body><h1>List of species</h1>
-                                    <ul>{}<ul>""".format(list_species)
-                data = {'list_species': list_species}
+                    else:
+                        list_species = "The limit must be an integer"
+                        contents += """<body><h1>List of species</h1>
+                                                        <ul>{}<ul>""".format(list_species)
+                    data = {'list_species': list_species}
+
+
+
+
+
 
             elif request == "/karyotype":
                 endpoint = "/info/assembly/"
-                if not para['specie']:
+                if 'specie' not in para.keys():
+                    contents += """<body><h1> Something went wrong</h1>The parameters are not correct"""
+                    data = {'error': "Parameters are not correct"}
+                elif not para['specie']:
                     contents += """<body><h1> Something went wrong</h1>You must fill the specie form"""
+                    data = {'error': "Parameters are not correct"}
                 else:
                     data = species_connect(server, endpoint, para)
                     if data:
@@ -169,8 +183,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
             elif request == "/chromosomeLength":
                 endpoint = "/info/assembly/"
-                if not para['specie'] or not para['chromo']:
+                if 'specie' not in para.keys() or 'chromo' not in para.keys():
+                    contents += """<body><h1> Something went wrong</h1>The parameters are not correct"""
+                    data = {'error': "Parameters are not correct"}
+                elif not para['specie'] or not para['chromo']:
                     contents += """<body><h1>Something went wrong</h1>Must fill the chromosome and the specie form"""
+                    data = {'error': "Parameters are not correct"}
                 else:
                     data = species_connect(server, endpoint, para)
                     if 'length' in data.keys():
@@ -183,8 +201,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 gene_request = request.lstrip("/gene")
 
                 if gene_request == "List":
-                    if not (para['chromo'] or para['start'] or para['end']):
+                    if ('chromo' or 'start' or 'end') not in para.keys():
+                        contents += """<body><h1> Something went wrong</h1>The parameters are not correct"""
+                        data = {'error': "Parameters are not correct"}
+                    elif not (para['chromo'] or para['start'] or para['end']):
                         contents += """<body><h1> Something went wrong</h1>You must fill the form"""
+                        data = {'error': "Parameters are not correct"}
                     else:
                         data = gene_list(server, para)
                         list_gene = list()
@@ -198,9 +220,12 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                         contents += """<body><h2>Genes list</h2>
                         <h3>    Chromosome {}. Start position: {}. End position: {}</h3>
                         <p><li>{}</p>""".format(para['chromo'], para['start'], para['end'], "</li><li>".join(list_gene))
-
+                elif 'gene' not in para.keys():
+                    contents += """<body><h1> Something went wrong</h1>The parameters are not correct"""
+                    data = {'error': "Parameters are not correct"}
                 elif not para['gene']:
                     contents += """<body><h1> Something went wrong</h1>You must fill the form"""
+                    data = {'error': "Parameters are not correct"}
 
                 else:
                     gene_id = get_id(server, para)
