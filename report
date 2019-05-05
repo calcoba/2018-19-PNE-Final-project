@@ -1,0 +1,295 @@
+API REST ENDPOINTS
+GET /listSpecies?limit=10&json=1 HTTP/1.1
+{"list_species": ["mus_musculus", "homo_sapiens", "cavia_porcellus", "mus_musculus_cbaj", "amphilophus_citrinellus", "anolis_carolinensis", "cebus_capucinus", "labrus_bergylta", "panthera_pardus", "takifugu_rubripes"]}
+
+GET /listSpecies?json=1 HTTP/1.1
+{"list_species": ["mus_musculus", "homo_sapiens", "cavia_porcellus", "mus_musculus_cbaj", "amphilophus_citrinellus", "anolis_carolinensis", "cebus_capucinus", "labrus_bergylta", "panthera_pardus", "takifugu_rubripes", "rhinopithecus_bieti", "mastacembelus_armatus", "lepidothrix_coronata", "fukomys_damarensis", "monodelphis_domestica", "equus_asinus_asinus", "xiphophorus_maculatus", "apteryx_owenii", "calidris_pugnax", "gasterosteus_aculeatus", "cricetulus_griseus_picr", "mus_spicilegus", "oryzias_melastigma", "nannospalax_galili", "chelonoidis_abingdonii", "acanthochromis_polyacanthus", "scleropages_formosus", "sarcophilus_harrisii", "gallus_gallus", "latimeria_chalumnae", "numida_meleagris", "mus_musculus_aj", "poecilia_latipinna", "phascolarctos_cinereus", "mus_musculus_fvbnj", "cricetulus_griseus_chok1gshd", "mus_musculus_lpj", "heterocephalus_glaber_female", "calidris_pygmaea", "anas_platyrhynchos_platyrhynchos", "saimiri_boliviensis_boliviensis", "lonchura_striata_domestica", "callithrix_jacchus", "ovis_aries", "papio_anubis", "macaca_fascicularis", "notechis_scutatus", "capra_hircus", "fundulus_heteroclitus", "ursus_americanus", "mus_musculus_nzohlltj", "notamacropus_eugenii", "tursiops_truncatus", "gambusia_affinis", "felis_catus", "pan_paniscus", "nomascus_leucogenys", "chlorocebus_sabaeus", "bos_taurus", "amphiprion_ocellaris", "mus_pahari", "coturnix_japonica", "carlito_syrichta", "apteryx_haastii", "macaca_nemestrina", "sphenodon_punctatus", "anser_brachyrhynchus", "anabas_testudineus", "lepisosteus_oculatus", "rhinopithecus_roxellana", "spermophilus_dauricus", "poecilia_formosa", "scophthalmus_maximus", "mus_spretus", "petromyzon_marinus", "xenopus_tropicalis", "gopherus_agassizii", "bison_bison_bison", "mus_musculus_129s1svimj", "ictalurus_punctatus", "octodon_degus", "colobus_angolensis_palliatus", "manacus_vitellinus", "astatotilapia_calliptera", "prolemur_simus", "mus_musculus_wsbeij", "dasypus_novemcinctus", "kryptolebias_marmoratus", "mus_musculus_dba2j", "urocitellus_parryii", "gorilla_gorilla", "microcebus_murinus", "mandrillus_leucophaeus", "pogona_vitticeps", "neovison_vison", "parus_major", "macaca_mulatta", "ornithorhynchus_anatinus", "oryzias_latipes_hni", "eptatretus_burgeri", "canis_lupus_dingo", "danio_rerio", "mus_musculus_nodshiltj", "stegastes_partitus", "chinchilla_lanigera", "mus_musculus_c57bl6nj", "astyanax_mexicanus", "ictidomys_tridecemlineatus", "vicugna_pacos", "crocodylus_porosus", "zonotrichia_albicollis", "amphiprion_percula", "panthera_tigris_altaica", "meleagris_gallopavo", "piliocolobus_tephrosceles", "marmota_marmota_marmota", "serinus_canaria", "apteryx_rowi", "salvator_merianae", "choloepus_hoffmanni", "mus_caroli", "sorex_araneus", "taeniopygia_guttata", "theropithecus_gelada", "hippocampus_comes", "cavia_aperea", "periophthalmus_magnuspinnatus", "aotus_nancymaae", "myotis_lucifugus", "sus_scrofa", "propithecus_coquereli", "drosophila_melanogaster", "pundamilia_nyererei", "echinops_telfairi", "junco_hyemalis", "vulpes_vulpes", "pan_troglodytes", "cricetulus_griseus_crigri", "seriola_dumerili", "erinaceus_europaeus", "loxodonta_africana", "neolamprologus_brichardi", "pelodiscus_sinensis", "microtus_ochrogaster", "mola_mola", "ursus_maritimus", "dromaius_novaehollandiae", "oryctolagus_cuniculus", "xiphophorus_couchianus", "cyprinodon_variegatus", "ciona_intestinalis", "pygocentrus_nattereri", "esox_lucius", "ochotona_princeps", "mustela_putorius_furo", "ciona_savignyi", "meriones_unguiculatus", "paramormyrops_kingsleyae", "jaculus_jaculus", "dipodomys_ordii", "cercocebus_atys", "oreochromis_niloticus", "pongo_abelii", "chrysemys_picta_bellii", "maylandia_zebra", "equus_caballus", "mesocricetus_auratus", "pteropus_vampyrus", "seriola_lalandi_dorsalis", "cyanistes_caeruleus", "mus_musculus_pwkphj", "gadus_morhua", "haplochromis_burtoni", "saccharomyces_cerevisiae", "cynoglossus_semilaevis", "canis_familiaris", "monopterus_albus", "ailuropoda_melanoleuca", "castor_canadensis", "melopsittacus_undulatus", "peromyscus_maniculatus_bairdii", "ficedula_albicollis", "bos_mutus", "mus_musculus_balbcj", "mus_musculus_casteij", "rattus_norvegicus", "otolemur_garnettii", "heterocephalus_glaber_male", "caenorhabditis_elegans", "poecilia_reticulata", "oryzias_latipes_hsok", "tetraodon_nigroviridis", "nothoprocta_perdicaria", "tupaia_belangeri", "mus_musculus_c3hhej", "poecilia_mexicana", "oryzias_latipes", "procavia_capensis", "mus_musculus_akrj"]}
+
+GET /listSpecies?limit=&json=1 HTTP/1.1
+{"list_species": ["ficedula_albicollis", "castor_canadensis", "ciona_intestinalis", "pogona_vitticeps", "manacus_vitellinus", "mus_spicilegus", "zonotrichia_albicollis", "dipodomys_ordii", "nomascus_leucogenys", "mus_musculus_fvbnj", "fundulus_heteroclitus", "mus_spretus", "poecilia_reticulata", "amphiprion_ocellaris", "meriones_unguiculatus", "saccharomyces_cerevisiae", "paramormyrops_kingsleyae", "jaculus_jaculus", "mus_musculus_c3hhej", "amphiprion_percula", "erinaceus_europaeus", "phascolarctos_cinereus", "acanthochromis_polyacanthus", "lepidothrix_coronata", "neovison_vison", "cavia_porcellus", "equus_caballus", "dasypus_novemcinctus", "haplochromis_burtoni", "macaca_fascicularis", "coturnix_japonica", "melopsittacus_undulatus", "heterocephalus_glaber_male", "aotus_nancymaae", "ursus_maritimus", "prolemur_simus", "poecilia_latipinna", "kryptolebias_marmoratus", "apteryx_haastii", "salvator_merianae", "propithecus_coquereli", "equus_asinus_asinus", "cavia_aperea", "anas_platyrhynchos_platyrhynchos", "danio_rerio", "peromyscus_maniculatus_bairdii", "serinus_canaria", "mesocricetus_auratus", "ictalurus_punctatus", "gambusia_affinis", "monopterus_albus", "lonchura_striata_domestica", "felis_catus", "ornithorhynchus_anatinus", "apteryx_owenii", "sphenodon_punctatus", "poecilia_mexicana", "drosophila_melanogaster", "sarcophilus_harrisii", "maylandia_zebra", "mus_musculus_wsbeij", "labrus_bergylta", "parus_major", "numida_meleagris", "petromyzon_marinus", "lepisosteus_oculatus", "xiphophorus_couchianus", "nannospalax_galili", "ochotona_princeps", "choloepus_hoffmanni", "pan_troglodytes", "saimiri_boliviensis_boliviensis", "mustela_putorius_furo", "gopherus_agassizii", "urocitellus_parryii", "mus_musculus_pwkphj", "oryzias_latipes", "pteropus_vampyrus", "chelonoidis_abingdonii", "rhinopithecus_bieti", "astyanax_mexicanus", "neolamprologus_brichardi", "mus_musculus_casteij", "echinops_telfairi", "taeniopygia_guttata", "loxodonta_africana", "cebus_capucinus", "anolis_carolinensis", "ailuropoda_melanoleuca", "spermophilus_dauricus", "sus_scrofa", "mus_musculus", "mus_musculus_nzohlltj", "calidris_pygmaea", "notamacropus_eugenii", "hippocampus_comes", "bos_taurus", "bison_bison_bison", "mus_musculus_aj", "oryzias_latipes_hsok", "pan_paniscus", "gorilla_gorilla", "dromaius_novaehollandiae", "apteryx_rowi", "canis_familiaris", "nothoprocta_perdicaria", "cyprinodon_variegatus", "cricetulus_griseus_picr", "vicugna_pacos", "cyanistes_caeruleus", "mastacembelus_armatus", "macaca_nemestrina", "mus_caroli", "colobus_angolensis_palliatus", "ovis_aries", "mandrillus_leucophaeus", "astatotilapia_calliptera", "oryzias_latipes_hni", "gadus_morhua", "eptatretus_burgeri", "carlito_syrichta", "oryzias_melastigma", "cercocebus_atys", "gasterosteus_aculeatus", "poecilia_formosa", "mus_musculus_dba2j", "mus_musculus_c57bl6nj", "junco_hyemalis", "cricetulus_griseus_chok1gshd", "xenopus_tropicalis", "canis_lupus_dingo", "tursiops_truncatus", "piliocolobus_tephrosceles", "pygocentrus_nattereri", "microcebus_murinus", "amphilophus_citrinellus", "caenorhabditis_elegans", "tetraodon_nigroviridis", "pundamilia_nyererei", "xiphophorus_maculatus", "mus_pahari", "cricetulus_griseus_crigri", "chinchilla_lanigera", "procavia_capensis", "mus_musculus_balbcj", "heterocephalus_glaber_female", "calidris_pugnax", "chlorocebus_sabaeus", "capra_hircus", "otolemur_garnettii", "latimeria_chalumnae", "anser_brachyrhynchus", "macaca_mulatta", "callithrix_jacchus", "scophthalmus_maximus", "periophthalmus_magnuspinnatus", "pelodiscus_sinensis", "panthera_pardus", "octodon_degus", "anabas_testudineus", "cynoglossus_semilaevis", "notechis_scutatus", "mus_musculus_cbaj", "oreochromis_niloticus", "theropithecus_gelada", "microtus_ochrogaster", "takifugu_rubripes", "crocodylus_porosus", "oryctolagus_cuniculus", "bos_mutus", "vulpes_vulpes", "stegastes_partitus", "sorex_araneus", "mus_musculus_akrj", "seriola_dumerili", "gallus_gallus", "mus_musculus_nodshiltj", "chrysemys_picta_bellii", "papio_anubis", "marmota_marmota_marmota", "pongo_abelii", "scleropages_formosus", "ictidomys_tridecemlineatus", "ciona_savignyi", "rhinopithecus_roxellana", "esox_lucius", "meleagris_gallopavo", "mus_musculus_lpj", "fukomys_damarensis", "panthera_tigris_altaica", "seriola_lalandi_dorsalis", "mola_mola", "ursus_americanus", "tupaia_belangeri", "monodelphis_domestica", "rattus_norvegicus", "mus_musculus_129s1svimj", "homo_sapiens", "myotis_lucifugus"]}
+
+GET /listSpecies?limeit=10&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /listSpecies?limit=1e0&json=1 HTTP/1.1
+{"list_species": "The limit must be an integer"}
+
+GET /listSpecies?limit=1000&json=1 HTTP/1.1
+{"list_species": "The limit can't be superior to 199"}
+
+GET /karyotype?specie=mouse&json=1 HTTP/1.1
+{"karyotype": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "X", "Y", "MT"]}
+
+GET /karyotype?specie=&json=1
+{"error": "Parameters are not correct"}
+
+GET /karyotype?specie=mouese&json=1 HTTP/1.1
+{"error": "Can not find internal name for species 'mouese'"}
+
+GET /karyotype?speecie=mouse&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /chromosomeLength?specie=mouse&chromo=18&json=1 HTTP/1.1
+{"length": 90702639}
+
+GET /chromosomeLength?specie=mouse&chromo=ads&json=1 HTTP/1.1
+{'error': 'No slice found for location ads'}
+
+GET /chromosomeLength?specie=&chromo=&json=1
+{"error": "Parameters are not correct"}
+
+GET /chromosomeLength?specie=&chromo=18&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /chromosomeLength?specie=mouse&chromo=&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /chromosomeLength?specie=mousee&chromo=18&json=1 HTTP/1.1
+{"error": "Can not find internal name for species 'mousee'"}
+
+GET /chromosomeLength?speecie=mouse&chromo=18&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /chromosomeLength?specie=mouse&chreomo=18&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneSeq?gene=FRAT1&json=1 HTTP/1.1
+{"gene_seq": "ATTCCGGCTCCCGCGGCTGCAGGCGCGCGGCTAGAGTGCCTGGCGGGCTCCGGCTTCCGCGTCCGCCCCGGCCCCGGTCCAGACTTAGTCTTCAGCTCCGCGCCCGCTCCGCCGCGGCCCACCGCGCCCGCCGGCAGCCGAGCCCCCAGCGACGCCCGCACAGCTCCGGGTGCCCAGACAGGGGGCCATGCCGTGCCGGAGGGAGGAGGAAGAGGAAGCCGGCGAGGAGGCGGAGGGGGAGGAAGAGGAGGAGGACAGCTTCCTCCTACTGCAGCAGTCAGTGGCGCTGGGCAGCTCGGGCGAGGTGGACCGGCTGGTGGCCCAGATCGGCGAGACGCTGCAGCTGGACGCGGCGCAGCACAGCCCGGCCTCGCCGTGCGGGCCCCCGGGGGCGCCGCTGCGGGCCCCGGGGCCCCTGGCTGCGGCGGTGCCGGCGGACAAGGCCAGGTCCCCGGCGGTGCCGCTGCTGCTGCCGCCCGCGTTGGCGGAGACTGTGGGCCCGGCGCCCCCTGGGGTCCTGCGCTGCGCCCTGGGGGACCGCGGCCGCGTGCGGGGCCGCGCTGCGCCCTACTGCGTGGCCGAGCTCGCCACAGGCCCCAGCGCGCTGTCCCCACTGCCCCCTCAGGCCGACCTTGATGGGCCTCCGGGAGCTGGCAAGCAGGGCATCCCGCAGCCGCTGTCGGGTCCGTGCCGGCGAGGATGGCTCCGGGGCGCCGCCGCCTCCCGCCGCCTGCAGCAGCGACGCGGGTCCCAACCAGAAACCCGCACAGGCGACGACGACCCGCACCGGCTTCTGCAGCAGCTAGTGCTCTCTGGAAACCTCATCAAGGAGGCCGTGCGAAGGCTTCATTCGCGACGGCTGCAGTTACGTGCAAAGCTTCCCCAACGCCCGCTCCTGGGACCTCTGTCGGCCCCGGTGCATGAACCCCCTTCGCCTCGCAGCCCTCGCGCGGCCTGCAGTGACCCTGGCGCCTCCGGGAGGGCGCAGCTCAGAACTGGCGACGGCGTTCTTGTGCCTGGCAGCTAACACGCCCGGGGTGGCCACAGCGCCAGCCTCAGACTGGAGGGCAAGGGGTTCCCTTGAGGGCTGCAGTTCTACTCAGGCTGGTGGAGAACTCTGGCTTTTGGAAGCGAGAGTAAAAAGCTAATGACGAGGAACCGAAAAATCGCGAGTGTTTCGCGGGTAACTGGGGTTGAGGGCCAAAATATTTGGAATGAAGGACTTTGGCCCTATTTAAGGCAGATTTTACAGAGCGCACCTCAAACGTACAAGTCAGTAGGACTCCTTATTTGGCGTGACCCGACCTGGCCGCGGAGCCTGCATTTCCTCGCAGCCTCTCAGTGCCCTCCAGCCCCGCGACCATGTGGCCACAATCCACGCTTCTCCGGATCGCGGTGCGCCGGAACCACGGAGGATGATGCCAGTTACTTGCTTTACCTTTTCAGGGCTGGCTCCTGATCCACTTTGGGGGAGGAGAACATGAGTAGATAATTTCAGGGTGCAGCCCAATCTGCCAGACTTAAAAAAACCATCTTGTGTCTTTGGAGGTGCTGCTTAATACCAAACATGCGGTGCCATGAAGGGACCCTTTGGGGGTTGAATAGGAGTTAACCCCTGCGCTCTCTTTGCAACTGTCTCTCTTCTCAGAGTGGTGGGGGAAGGCTGTACGACACGGGTGGGGAAAGGAGGTGGGGGCGGGGAGTATTGAATGGTGGTGGAAGGGTAGAGAGGCGCGGAGTGAACCCCACGCCCTGTCTAAAGTGTATTTTCAGAGCCGGCCCGCCTCTCCTCGGTTCAAGGTCACTGTTTCCTGGGCACGCACTGGGTTGCGGGACAGAGTAGCCAGGTTCTGCCGGTGCTCGGAGAAGAGCGCAGTGTTTTGCAAGTGCTGGAGTCTCCTGAGGACACGCGCGTCGCCGCCACCGCGGGTGTGGGAAAGCGCGGACGTGCTGGGCGGCTGTGCTTCGGTAGGCGACCACCGCCCCTGGCCGCGCTCCGGGCTTTCACGGAAACTCCCGAGACCGGGCCCTGGGTTCCTCCTCTCCTACTCGGCTCTGCAGTCCTACTCAAGCGGGTGGCTCTGGGATCCTGGGGGCCTGGGTTGGGGGCTAGGGAGACGCCATGTGATGGACACTCCAGGGACACACAGCCTAGCACAGCAGCTTATAATGGGCTCTCCGGGGCCATTTGCAATAACAGCTGCAATTCCCTGGATAGACGAGTTGATTTCCTCCCTCTGCCCCTCCCCCAGCCATGCCAGCTGGCCTTTGTAAGTGCAGGAAACCGAGTAGAAAATGTGACCCTCCAAATGGAGAAGCTGCAGGCTTTGCCATTGTGAACCATGGTGAAGTGCTTGGAACATACTGTTCACTCACTCTAAAGGCGCTGAGACTGTGCTGTTGTTCTCGTTTTTATAGTCAATGGCTTGTTCATCATCCAGATGTGGCTACTGACATATCTACACTTCGCACCGGAGTGTCTGGAATTGTGGCTATCCTGATTATAGGATTTTAACTTAACTGAAATGCCTGCTTTGAATAAATGTGTTGGGTTTTTTGTTTGGTTTTATTTTATACTTGCCATCAGTGAAAAAGATGTACAGAACACATTTCTCTGATCTCCATAAACATGAAAACACTTGAAATCTC"}
+
+GET /geneSeq?gene=FRAT1e&json=1 HTTP/1.1
+{"error": "Bad Request for url: <a href=\"http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e\">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist"}
+
+GET /geneSeq?geene=FRAT1&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneSeq?gene=&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneInfo?gene=FRAT1&json=1 HTTP/1.1
+{"gene_id": "ENSG00000165879", "start": "97319267", "end": "97321915", "chromosome": "10", "length": 2649}
+
+GET /geneInfo?gene=FRAT1e&json=1 HTTP/1.1
+{"error": "Bad Request for url: <a href=\"http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e\">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist"}
+
+GET /geneInfo?geene=FRAT1&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneInfo?gene=&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneCalc?gene=FRAT1&json=1 HTTP/1.1
+{"p_bases": {"T": "19.7%", "A": "18.0%", "G": "32.0%", "C": "30.2%"}, "c_bases": {"T": 522, "A": 478, "G": 849, "C": 800}}
+
+GET /geneCalc?gene=FRAT1e&json=1 HTTP/1.1
+{"error": "Bad Request for url: <a href=\"http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e\">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist"}
+
+GET /geneCalc?geene=FRAT1&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneCalc?gene=&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneList?chromo=1&start=0&end=30000&json=1 HTTP/1.1
+{"list_gene": ["DDX11L1", "WASH7P", "MIR6859-1", "MIR1302-2HG"]}
+
+GET /geneList?chromo=e&start=0&end=30000&json=1 HTTP/1.1
+{"error": ["No slice found for location e:0-30000"]}
+
+GET /geneList?chromo=1&start=30001&end=30000&json=1 HTTP/1.1
+{"error": ["Cannot request a slice whose start is greater than its end. Start: 30001. End: 30000"]}
+
+GET /geneList?chromo=1&start=10&end=500000000&json=1 HTTP/1.1
+{"error": ["248956413 is greater than the maximum allowed length of 5000000. Request smaller regions of sequence"]}
+
+GET /geneList?chromo=1&start=2000000000000&end=2000000000001&json=1 HTTP/1.1
+{"error": ["Cannot request a slice whose start (2000000000000) is greater than 248956422 for 1."]}
+
+GET /geneList?chromo=&start=&end=&json=1 HTTP/1.1
+{"error": "Parameters are not correct"}
+
+GET /geneList?chromo=1&start=0&end=&json=1 HTTP/1.1
+{"error": ["Cannot request negative or 0 end indexes through this interface. Given 0 but expected something greater than 0"]}
+
+GET /geneList?chromo=1&start=&end=2000000&json=1 HTTP/1.1
+{"error": ["-2000000 is not a valid start"]}
+
+GET /geneList?chromo=&start=1&end=2000000&json=1 HTTP/1.1
+{"error": ["Location :1-2000000 not understood"]}
+
+
+HTML ENDPOINTS:
+
+
+GET /listSpecies?limit=10 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>List of species</h1>
+<ul><li>mus_musculus</li><li>homo_sapiens</li><li>cavia_porcellus</li><li>mus_musculus_cbaj</li><li>amphilophus_citrinellus</li><li>anolis_carolinensis</li><li>cebus_capucinus</li><li>labrus_bergylta</li><li>panthera_pardus</li><li>takifugu_rubripes</li><ul><p><a href="/">Main page</a></p></body></html>
+
+GET /listSpecies?/listSpecies?limit= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>List of species</h1>
+<ul><li>ficedula_albicollis</li><li>castor_canadensis</li><li>ciona_intestinalis</li><li>pogona_vitticeps</li><li>manacus_vitellinus</li><li>mus_spicilegus</li><li>zonotrichia_albicollis</li><li>dipodomys_ordii</li><li>nomascus_leucogenys</li><li>mus_musculus_fvbnj</li><li>fundulus_heteroclitus</li><li>mus_spretus</li><li>poecilia_reticulata</li><li>amphiprion_ocellaris</li><li>meriones_unguiculatus</li><li>saccharomyces_cerevisiae</li><li>paramormyrops_kingsleyae</li><li>jaculus_jaculus</li><li>mus_musculus_c3hhej</li><li>amphiprion_percula</li><li>erinaceus_europaeus</li><li>phascolarctos_cinereus</li><li>acanthochromis_polyacanthus</li><li>lepidothrix_coronata</li><li>neovison_vison</li><li>cavia_porcellus</li><li>equus_caballus</li><li>dasypus_novemcinctus</li><li>haplochromis_burtoni</li><li>macaca_fascicularis</li><li>coturnix_japonica</li><li>melopsittacus_undulatus</li><li>heterocephalus_glaber_male</li><li>aotus_nancymaae</li><li>ursus_maritimus</li><li>prolemur_simus</li><li>poecilia_latipinna</li><li>kryptolebias_marmoratus</li><li>apteryx_haastii</li><li>salvator_merianae</li><li>propithecus_coquereli</li><li>equus_asinus_asinus</li><li>cavia_aperea</li><li>anas_platyrhynchos_platyrhynchos</li><li>danio_rerio</li><li>peromyscus_maniculatus_bairdii</li><li>serinus_canaria</li><li>mesocricetus_auratus</li><li>ictalurus_punctatus</li><li>gambusia_affinis</li><li>monopterus_albus</li><li>lonchura_striata_domestica</li><li>felis_catus</li><li>ornithorhynchus_anatinus</li><li>apteryx_owenii</li><li>sphenodon_punctatus</li><li>poecilia_mexicana</li><li>drosophila_melanogaster</li><li>sarcophilus_harrisii</li><li>maylandia_zebra</li><li>mus_musculus_wsbeij</li><li>labrus_bergylta</li><li>parus_major</li><li>numida_meleagris</li><li>petromyzon_marinus</li><li>lepisosteus_oculatus</li><li>xiphophorus_couchianus</li><li>nannospalax_galili</li><li>ochotona_princeps</li><li>choloepus_hoffmanni</li><li>pan_troglodytes</li><li>saimiri_boliviensis_boliviensis</li><li>mustela_putorius_furo</li><li>gopherus_agassizii</li><li>urocitellus_parryii</li><li>mus_musculus_pwkphj</li><li>oryzias_latipes</li><li>pteropus_vampyrus</li><li>chelonoidis_abingdonii</li><li>rhinopithecus_bieti</li><li>astyanax_mexicanus</li><li>neolamprologus_brichardi</li><li>mus_musculus_casteij</li><li>echinops_telfairi</li><li>taeniopygia_guttata</li><li>loxodonta_africana</li><li>cebus_capucinus</li><li>anolis_carolinensis</li><li>ailuropoda_melanoleuca</li><li>spermophilus_dauricus</li><li>sus_scrofa</li><li>mus_musculus</li><li>mus_musculus_nzohlltj</li><li>calidris_pygmaea</li><li>notamacropus_eugenii</li><li>hippocampus_comes</li><li>bos_taurus</li><li>bison_bison_bison</li><li>mus_musculus_aj</li><li>oryzias_latipes_hsok</li><li>pan_paniscus</li><li>gorilla_gorilla</li><li>dromaius_novaehollandiae</li><li>apteryx_rowi</li><li>canis_familiaris</li><li>nothoprocta_perdicaria</li><li>cyprinodon_variegatus</li><li>cricetulus_griseus_picr</li><li>vicugna_pacos</li><li>cyanistes_caeruleus</li><li>mastacembelus_armatus</li><li>macaca_nemestrina</li><li>mus_caroli</li><li>colobus_angolensis_palliatus</li><li>ovis_aries</li><li>mandrillus_leucophaeus</li><li>astatotilapia_calliptera</li><li>oryzias_latipes_hni</li><li>gadus_morhua</li><li>eptatretus_burgeri</li><li>carlito_syrichta</li><li>oryzias_melastigma</li><li>cercocebus_atys</li><li>gasterosteus_aculeatus</li><li>poecilia_formosa</li><li>mus_musculus_dba2j</li><li>mus_musculus_c57bl6nj</li><li>junco_hyemalis</li><li>cricetulus_griseus_chok1gshd</li><li>xenopus_tropicalis</li><li>canis_lupus_dingo</li><li>tursiops_truncatus</li><li>piliocolobus_tephrosceles</li><li>pygocentrus_nattereri</li><li>microcebus_murinus</li><li>amphilophus_citrinellus</li><li>caenorhabditis_elegans</li><li>tetraodon_nigroviridis</li><li>pundamilia_nyererei</li><li>xiphophorus_maculatus</li><li>mus_pahari</li><li>cricetulus_griseus_crigri</li><li>chinchilla_lanigera</li><li>procavia_capensis</li><li>mus_musculus_balbcj</li><li>heterocephalus_glaber_female</li><li>calidris_pugnax</li><li>chlorocebus_sabaeus</li><li>capra_hircus</li><li>otolemur_garnettii</li><li>latimeria_chalumnae</li><li>anser_brachyrhynchus</li><li>macaca_mulatta</li><li>callithrix_jacchus</li><li>scophthalmus_maximus</li><li>periophthalmus_magnuspinnatus</li><li>pelodiscus_sinensis</li><li>panthera_pardus</li><li>octodon_degus</li><li>anabas_testudineus</li><li>cynoglossus_semilaevis</li><li>notechis_scutatus</li><li>mus_musculus_cbaj</li><li>oreochromis_niloticus</li><li>theropithecus_gelada</li><li>microtus_ochrogaster</li><li>takifugu_rubripes</li><li>crocodylus_porosus</li><li>oryctolagus_cuniculus</li><li>bos_mutus</li><li>vulpes_vulpes</li><li>stegastes_partitus</li><li>sorex_araneus</li><li>mus_musculus_akrj</li><li>seriola_dumerili</li><li>gallus_gallus</li><li>mus_musculus_nodshiltj</li><li>chrysemys_picta_bellii</li><li>papio_anubis</li><li>marmota_marmota_marmota</li><li>pongo_abelii</li><li>scleropages_formosus</li><li>ictidomys_tridecemlineatus</li><li>ciona_savignyi</li><li>rhinopithecus_roxellana</li><li>esox_lucius</li><li>meleagris_gallopavo</li><li>mus_musculus_lpj</li><li>fukomys_damarensis</li><li>panthera_tigris_altaica</li><li>seriola_lalandi_dorsalis</li><li>mola_mola</li><li>ursus_americanus</li><li>tupaia_belangeri</li><li>monodelphis_domestica</li><li>rattus_norvegicus</li><li>mus_musculus_129s1svimj</li><li>homo_sapiens</li><li>myotis_lucifugus</li><ul><p><a href="/">Main page</a></p></body></html>
+
+GET /listSpecies?limeit=10 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /listSpecies?limit=1e0 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>List of species</h1><ul>The limit must be an integer<ul><p><a href="/">Main page</a></p></body></html>
+
+GET /listSpecies?limit=1000 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>List of species</h1><ul>The limit can't be superior to 199<ul><p><a href="/">Main page</a></p></body></html>
+
+GET /karyotype?specie=mouse HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>mouse Karyotype information</h1>
+<ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>X</li><li>Y</li><li>MT</li><ul><ul><p><a href="/">Main page</a></p></body></html>
+
+GET /karyotype?specie= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>You must fill the specie form<p><a href="/">Main page</a></p></body></html>
+
+GET /karyotype?specie=mouese HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>mouese Karyotype information</h1><ul>Can not find internal name for species 'mouese'<ul><p><a href="/">Main page</a></p></body></html>
+
+GET /karyotype?speceie=mouse HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=mouse&chromo=18 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Chromosome length</h2>Chromosome 18 of mouse is 90702639 length<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=mouse&chromo=ads HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Something went wrong in the request</h2>No slice found for location ads<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=&chromo= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>Something went wrong</h1>Must fill the chromosome and the specie form<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=&chromo=18 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>Something went wrong</h1>Must fill the chromosome and the specie form<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=mouse&chromo= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1>Something went wrong</h1>Must fill the chromosome and the specie form<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=mousee&chromo=18 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Something went wrong in the request</h2>Can not find internal name for species 'mousee'<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?speecie=mouse&chromo=18 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /chromosomeLength?specie=mouse&chreomo=18 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /geneSeq?gene=FRAT1 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Gene sequence</h2><p style='word-break: break-all'>ATTCCGGCTCCCGCGGCTGCAGGCGCGCGGCTAGAGTGCCTGGCGGGCTCCGGCTTCCGCGTCCGCCCCGGCCCCGGTCCAGACTTAGTCTTCAGCTCCGCGCCCGCTCCGCCGCGGCCCACCGCGCCCGCCGGCAGCCGAGCCCCCAGCGACGCCCGCACAGCTCCGGGTGCCCAGACAGGGGGCCATGCCGTGCCGGAGGGAGGAGGAAGAGGAAGCCGGCGAGGAGGCGGAGGGGGAGGAAGAGGAGGAGGACAGCTTCCTCCTACTGCAGCAGTCAGTGGCGCTGGGCAGCTCGGGCGAGGTGGACCGGCTGGTGGCCCAGATCGGCGAGACGCTGCAGCTGGACGCGGCGCAGCACAGCCCGGCCTCGCCGTGCGGGCCCCCGGGGGCGCCGCTGCGGGCCCCGGGGCCCCTGGCTGCGGCGGTGCCGGCGGACAAGGCCAGGTCCCCGGCGGTGCCGCTGCTGCTGCCGCCCGCGTTGGCGGAGACTGTGGGCCCGGCGCCCCCTGGGGTCCTGCGCTGCGCCCTGGGGGACCGCGGCCGCGTGCGGGGCCGCGCTGCGCCCTACTGCGTGGCCGAGCTCGCCACAGGCCCCAGCGCGCTGTCCCCACTGCCCCCTCAGGCCGACCTTGATGGGCCTCCGGGAGCTGGCAAGCAGGGCATCCCGCAGCCGCTGTCGGGTCCGTGCCGGCGAGGATGGCTCCGGGGCGCCGCCGCCTCCCGCCGCCTGCAGCAGCGACGCGGGTCCCAACCAGAAACCCGCACAGGCGACGACGACCCGCACCGGCTTCTGCAGCAGCTAGTGCTCTCTGGAAACCTCATCAAGGAGGCCGTGCGAAGGCTTCATTCGCGACGGCTGCAGTTACGTGCAAAGCTTCCCCAACGCCCGCTCCTGGGACCTCTGTCGGCCCCGGTGCATGAACCCCCTTCGCCTCGCAGCCCTCGCGCGGCCTGCAGTGACCCTGGCGCCTCCGGGAGGGCGCAGCTCAGAACTGGCGACGGCGTTCTTGTGCCTGGCAGCTAACACGCCCGGGGTGGCCACAGCGCCAGCCTCAGACTGGAGGGCAAGGGGTTCCCTTGAGGGCTGCAGTTCTACTCAGGCTGGTGGAGAACTCTGGCTTTTGGAAGCGAGAGTAAAAAGCTAATGACGAGGAACCGAAAAATCGCGAGTGTTTCGCGGGTAACTGGGGTTGAGGGCCAAAATATTTGGAATGAAGGACTTTGGCCCTATTTAAGGCAGATTTTACAGAGCGCACCTCAAACGTACAAGTCAGTAGGACTCCTTATTTGGCGTGACCCGACCTGGCCGCGGAGCCTGCATTTCCTCGCAGCCTCTCAGTGCCCTCCAGCCCCGCGACCATGTGGCCACAATCCACGCTTCTCCGGATCGCGGTGCGCCGGAACCACGGAGGATGATGCCAGTTACTTGCTTTACCTTTTCAGGGCTGGCTCCTGATCCACTTTGGGGGAGGAGAACATGAGTAGATAATTTCAGGGTGCAGCCCAATCTGCCAGACTTAAAAAAACCATCTTGTGTCTTTGGAGGTGCTGCTTAATACCAAACATGCGGTGCCATGAAGGGACCCTTTGGGGGTTGAATAGGAGTTAACCCCTGCGCTCTCTTTGCAACTGTCTCTCTTCTCAGAGTGGTGGGGGAAGGCTGTACGACACGGGTGGGGAAAGGAGGTGGGGGCGGGGAGTATTGAATGGTGGTGGAAGGGTAGAGAGGCGCGGAGTGAACCCCACGCCCTGTCTAAAGTGTATTTTCAGAGCCGGCCCGCCTCTCCTCGGTTCAAGGTCACTGTTTCCTGGGCACGCACTGGGTTGCGGGACAGAGTAGCCAGGTTCTGCCGGTGCTCGGAGAAGAGCGCAGTGTTTTGCAAGTGCTGGAGTCTCCTGAGGACACGCGCGTCGCCGCCACCGCGGGTGTGGGAAAGCGCGGACGTGCTGGGCGGCTGTGCTTCGGTAGGCGACCACCGCCCCTGGCCGCGCTCCGGGCTTTCACGGAAACTCCCGAGACCGGGCCCTGGGTTCCTCCTCTCCTACTCGGCTCTGCAGTCCTACTCAAGCGGGTGGCTCTGGGATCCTGGGGGCCTGGGTTGGGGGCTAGGGAGACGCCATGTGATGGACACTCCAGGGACACACAGCCTAGCACAGCAGCTTATAATGGGCTCTCCGGGGCCATTTGCAATAACAGCTGCAATTCCCTGGATAGACGAGTTGATTTCCTCCCTCTGCCCCTCCCCCAGCCATGCCAGCTGGCCTTTGTAAGTGCAGGAAACCGAGTAGAAAATGTGACCCTCCAAATGGAGAAGCTGCAGGCTTTGCCATTGTGAACCATGGTGAAGTGCTTGGAACATACTGTTCACTCACTCTAAAGGCGCTGAGACTGTGCTGTTGTTCTCGTTTTTATAGTCAATGGCTTGTTCATCATCCAGATGTGGCTACTGACATATCTACACTTCGCACCGGAGTGTCTGGAATTGTGGCTATCCTGATTATAGGATTTTAACTTAACTGAAATGCCTGCTTTGAATAAATGTGTTGGGTTTTTTGTTTGGTTTTATTTTATACTTGCCATCAGTGAAAAAGATGTACAGAACACATTTCTCTGATCTCCATAAACATGAAAACACTTGAAATCTC</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneSeq?gene=FRAT1e HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1><p>Bad Request for url: <a href="http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneSeq?geene=FRAT1 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /geneSeq?gene= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>You must fill the form<p><a href="/">Main page</a></p></body></html>
+
+GET /geneInfo?gene=FRAT1 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Gene information</h2>
+<p>Gene Id: ENSG00000165879</p><p>Start Position: 97319267</p>
+ <p>End Position: 97321915</p><p>Chromosome: 10</p><p>Length: 2649
+ </p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneInfo?gene=FRAT1e HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1><p>Bad Request for url: <a href="http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneInfo?geene=FRAT1 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /geneInfo?gene= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>You must fill the form<p><a href="/">Main page</a></p></body></html>
+
+GET /geneCalc?gene=FRAT1 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2> FRAT1 Gene Calculations</h2>
+<p>Base  : Percentage<p>T     : 19.7%</p><p>C     : 30.2%</p><p>A     : 18.0%</p><p>G     : 32.0%</p></p>
+<p>Base  : Count<p>T     : 522  </p><p>C     : 800  </p><p>A     : 478  </p><p>G     : 849  </p></p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneCalc?gene=FRAT1e HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1><p>Bad Request for url: <a href="http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneCalc?geene=FRAT1 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /geneCalc?gene= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>You must fill the form<p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=1&start=0&end=30000& HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>The parameters are not correct<p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=e&start=0&end=30000 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome e. Start position: 0. End position: 30000</h3>
+<p><li>No slice found for location e:0-30000</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=1&start=30001&end=30000 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome 1. Start position: 30001. End position: 30000</h3>
+<p><li>Cannot request a slice whose start is greater than its end. Start: 30001. End: 30000</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=1&start=10&end=500000000 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome 1. Start position: 10. End position: 500000000</h3>
+<p><li>248956413 is greater than the maximum allowed length of 5000000. Request smaller regions of sequence</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=1&start=2000000000000&end=2000000000001 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome 1. Start position: 2000000000000. End position: 2000000000001</h3>
+<p><li>Cannot request a slice whose start (2000000000000) is greater than 248956422 for 1.</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=&start=&end= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h1> Something went wrong</h1>You must fill the form<p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=1&start=0&end= HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome 1. Start position: 0. End position: </h3>
+<p><li>Cannot request negative or 0 end indexes through this interface. Given 0 but expected something greater than 0</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=1&start=&end=2000000 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome 1. Start position: . End position: 2000000</h3>
+<p><li>-2000000 is not a valid start</p><p><a href="/">Main page</a></p></body></html>
+
+GET /geneList?chromo=&start=1&end=2000000 HTTP/1.1
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
+<body><h2>Genes list</h2>
+<h3>    Chromosome . Start position: 1. End position: 2000000</h3>
+<p><li>Location :1-2000000 not understood</p><p><a href="/">Main page</a></p></body></html>
