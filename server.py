@@ -153,11 +153,6 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                         <ul>{}<ul>""".format(list_species)
                     data = {'list_species': list_species}
 
-
-
-
-
-
             elif request == "/karyotype":
                 endpoint = "/info/assembly/"
                 if 'specie' not in para.keys():
