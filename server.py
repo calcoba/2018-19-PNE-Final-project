@@ -61,12 +61,13 @@ def get_gene_data(server, gene_id):
 def gene_calc(gene_seq):
     seq_calc = Seq(gene_seq)
     bases = set(seq_calc.strbases)
+    total_length = seq_calc.len()
     p_bases = {}
     c_bases = {}
     for base in bases:
         p_bases.update({base: str(seq_calc.perc(base)) + "%"})
         c_bases.update({base: seq_calc.count(base)})
-    bases_data = {'p_bases': p_bases, 'c_bases': c_bases}
+    bases_data = {'p_bases': p_bases, 'c_bases': c_bases, 'total_length': total_length}
     return bases_data
 
 
@@ -254,7 +255,8 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                     c_table += "<p>{:<5} : {:<5}</p>".format(k, v)
                                 contents += """<body><h2> {} Gene Calculations</h2>
                                  <p>{}</p>
-                                 <p>{}</p>""".format(para['gene'], p_table, c_table)
+                                 <p>{}</p>
+                                 <p>Total length: {}</p>""".format(para['gene'], p_table, c_table, data['total_length'])
 
                         else:
                             data = g_data
