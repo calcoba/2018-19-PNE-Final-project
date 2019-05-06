@@ -78,7 +78,7 @@ GET /geneInfo?gene=&json=1 HTTP/1.1
 {"error": "Parameters are not correct"}
 
 GET /geneCalc?gene=FRAT1&json=1 HTTP/1.1
-{"p_bases": {"T": "19.7%", "A": "18.0%", "G": "32.0%", "C": "30.2%"}, "c_bases": {"T": 522, "A": 478, "G": 849, "C": 800}}
+{'p_bases': {'A': '18.0%', 'G': '32.0%', 'T': '19.7%', 'C': '30.2%'}, 'c_bases': {'A': 478, 'G': 849, 'T': 522, 'C': 800}, 'total_length': 2649}
 
 GET /geneCalc?gene=FRAT1e&json=1 HTTP/1.1
 {"error": "Bad Request for url: <a href=\"http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e\">http://rest.ensembl.org/xrefs/symbol/homo_sapiens/FRAT1e</a> Gene name does not exist"}
@@ -229,8 +229,9 @@ GET /geneInfo?gene= HTTP/1.1
 GET /geneCalc?gene=FRAT1 HTTP/1.1
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
 <body><h2> FRAT1 Gene Calculations</h2>
-<p>Base  : Percentage<p>T     : 19.7%</p><p>C     : 30.2%</p><p>A     : 18.0%</p><p>G     : 32.0%</p></p>
-<p>Base  : Count<p>T     : 522  </p><p>C     : 800  </p><p>A     : 478  </p><p>G     : 849  </p></p><p><a href="/">Main page</a></p></body></html>
+<p>Base  : Percentage<p>A     : 18.0%</p><p>C     : 30.2%</p><p>G     : 32.0%</p><p>T     : 19.7%</p></p>
+<p>Base  : Count<p>A     : 478  </p><p>C     : 800  </p><p>G     : 849  </p><p>T     : 522  </p></p>
+<p>Total length: 2649</p><p><a href="/">Main page</a></p></body></html>
 
 GET /geneCalc?gene=FRAT1e HTTP/1.1
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>EnsemblRequest</title></head>
